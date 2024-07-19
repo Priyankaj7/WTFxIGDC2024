@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
-using UnityEditor;
+// using UnityEditor;
 
 namespace Minimalist.MapBuilder
 {
-    [ExecuteInEditMode]
-    public class MapBuilder : MonoBehaviour
+    // [ExecuteInEditMode]
+    public class MapBuilderRuntime : MonoBehaviour
     {
         // Public properties
         public Transform[] GridTransforms
@@ -17,7 +18,7 @@ namespace Minimalist.MapBuilder
             }
         }
         public bool DoneInstantiating { get; set; }
-        public bool EditState { get; set; }
+        // public bool EditState { get; set; }
         public Vector3 HoveredPosition { get; set; }
         public List<Vector3> SelectedPositions { get; set; }
         public bool Dragging { get; set; }
@@ -38,6 +39,7 @@ namespace Minimalist.MapBuilder
 
         private Transform _baseTransform;
         private EditModeInstanceBhv _baseEditModeInstance;
+        private EditModeInstanceBhv _dragOnsetTileInstance;
         private Renderer _baseRenderer;
         private Collider _baseCollider;
         private Material _baseMaterial;
@@ -73,13 +75,13 @@ namespace Minimalist.MapBuilder
 
         private void Update()
         {
-            if (_busy || !this.EditState)
+            if (_busy)
             {
                 return;
             }
 
             _busy = true;
-
+             OnSceneGUI();
             this.PseudoAwake();
 
             this.ValidateBaseScale();
@@ -322,7 +324,7 @@ namespace Minimalist.MapBuilder
 
         private void OnDrawGizmosSelected()
         {
-            if (!this.EditState || _baseTransform == null || _tileParentTransform == null)
+            if ( _baseTransform == null || _tileParentTransform == null)
             {
                 return;
             }
@@ -407,5 +409,131 @@ namespace Minimalist.MapBuilder
         {
             DestroyImmediate(_tileParentTransform.gameObject);
         }
+
+        private void OnSceneGUI()
+        {
+            MapBuilderRuntime mapBuilder = this;
+
+            if (mapBuilder == null || !mapBuilder.DoneInstantiating)
+            {
+                return;
+            }
+
+            int controlId = GUIUtility.GetControlID(FocusType.Passive);
+
+            // HandleUtility.AddDefaultControl(controlId);
+
+            // Event e = Event.current;
+            // I
+            // if(Input.mo)
+
+            // if (!e.alt && !e.shift && !e.control)
+            {
+                Vector3 mousePosition = Input.mousePosition;
+
+                // Ray ray = HandleUtility.GUIPointToWorldRay(mousePosition);
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                Physics.Raycast(ray, out RaycastHit prehit, Mathf.Infinity);
+
+                var nearestVertex = prehit.point;
+
+                // HandleUtility.FindNearestVertex(mousePosition, mapBuilder.GridTransforms, out Vector3 nearestVertex);
+
+                mapBuilder.HoveredPosition = nearestVertex;
+
+                Bounds bounds = new Bounds(nearestVertex + Vector3.up * mapBuilder.tileScale.y / 2f, mapBuilder.tileScale);
+
+                Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity);
+                // if(hit.transform == _gridTransform){
+                //     hit.point;
+                // }
+
+                // left mouse button
+                MouseEventsNew mEvent;// =  MouseEventsNew.MouseDown;
+                if(Input.GetMouseButtonDown(0)){
+                    mEvent = MouseEventsNew.MouseDown;
+                }
+                else if(Input.GetMouseButton(0)){
+                    mEvent = MouseEventsNew.MouseDrag;
+                }
+                else if(Input.GetMouseButtonUp(0)){
+                    mEvent = MouseEventsNew.MouseUp;
+                }
+                else{
+                    mEvent = MouseEventsNew.MouseLeaveWindow;
+                }
+
+                //if (e.button == 0)
+                {
+                    switch (mEvent)
+                    {
+                        case MouseEventsNew.MouseDown:
+
+                            mapBuilder.Dragging = bounds.IntersectRay(ray);
+
+                            goto case MouseEventsNew.MouseDrag;
+
+                        case MouseEventsNew.MouseDrag:
+
+                            if (bounds.IntersectRay(ray) && !mapBuilder.SelectedPositions.Contains(nearestVertex))
+                            {
+                                mapBuilder.SelectedPositions.Add(nearestVertex);
+
+                                mapBuilder.UpdateGridMesh();
+                            }
+
+                            break;
+
+                        case MouseEventsNew.MouseLeaveWindow:
+
+                        case MouseEventsNew.MouseUp:
+
+                            mapBuilder.InstantiateTiles();
+
+                            mapBuilder.Dragging = false;
+
+                            break;
+                    }
+
+                    // InternalEditorUtility.RepaintAllViews();
+                }
+
+                // right mouse button
+                // else if (e.button == 1 && hit.collider != null)
+                // {
+                //     switch (e.type)
+                //     {
+                //         case EventType.MouseDown:
+
+                //             GUIUtility.hotControl = controlId;
+
+                //             _dragOnsetTileInstance = hit.transform.GetComponent<EditModeInstanceBhv>();
+
+                //             break;
+
+                //         case EventType.MouseDrag:
+
+                //         case EventType.MouseUp:
+
+                //             EditModeInstanceBhv tileInstance = hit.transform.GetComponent<EditModeInstanceBhv>();
+
+                //             if (tileInstance == _dragOnsetTileInstance)
+                //             {
+                //                 mapBuilder.DestroyTile(hit.collider);
+                //             }
+
+                //             break;
+                //     }
+
+                //     // InternalEditorUtility.RepaintAllViews();
+                // }
+            }
+        }
     }
+}
+public enum MouseEventsNew{
+    MouseDown,
+    MouseDrag,
+    MouseUp,
+    MouseLeaveWindow
 }
