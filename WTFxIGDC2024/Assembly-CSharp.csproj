@@ -58,6 +58,10 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Minimalist\Map Builder\Scripts\Map Builder\MapBuilder.cs" />
+    <Compile Include="Assets\Minimalist\Map Builder\Scripts\Sample Scene\CameraBhv.cs" />
+    <Compile Include="Assets\Minimalist\Map Builder\Scripts\Map Builder\EditModeInstanceBhv.cs" />
+    <Compile Include="Assets\Minimalist\Map Builder\Scripts\Sample Scene\DirectionalLightBhv.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
