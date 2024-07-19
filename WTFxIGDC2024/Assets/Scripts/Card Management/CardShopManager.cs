@@ -11,11 +11,17 @@ public class CardShopManager : MonoBehaviour
 {
     //prefab of the card that is locked and in shop
     [SerializeField] GameObject _cardPrefab;
-
+    
+    private UIController _uiController;
+    //Vlaue for Current bank balance
+    public float CurrentBalance = 50;
     // Start is called before the first frame update
     void Start()
     {
+        
         GenerateCards();
+        _uiController = GameObject.FindObjectOfType<UIController>();
+        _uiController.UpdateBankBalance(CurrentBalance);
     }
 
     private void GenerateCards()
@@ -26,6 +32,7 @@ public class CardShopManager : MonoBehaviour
             GameObject card = Instantiate(_cardPrefab);
             card.transform.SetParent(transform, false);
             card.GetComponent<RectTransform>().position = new Vector3(PosX, 0, 0);
+            card.GetComponent<CardLocked>()._cardCost = 5f;
             PosX += 100f;
 
         }
@@ -34,6 +41,8 @@ public class CardShopManager : MonoBehaviour
     
     public async void SpawnNewCard(GameObject oldCard)
     {
+        CurrentBalance -= oldCard.GetComponent<CardLocked>()._cardCost;
+        _uiController.UpdateBankBalance(CurrentBalance);
         //Logic to be added for new card
         await Task.Delay(1000);
         float PosX = oldCard.GetComponent<RectTransform>().position.x;

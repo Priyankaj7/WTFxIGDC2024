@@ -11,10 +11,13 @@ public class CardLocked : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     Button _cardButton;
     CardShopManager _shopManager;
 
+    //is set when the card is instantiated
+    public float _cardCost;
     public void OnPointerEnter(PointerEventData eventData)
     {
         Debug.Log("Card enter");
-        this.transform.DOScale(new Vector3(2f, 2f, 2f), 0.5f);
+        this.transform.DOScale(new Vector3(1.5f, 1.5f, 1.5f), 0.5f);
+        this.GetComponent<RectTransform>().SetAsLastSibling();
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -29,18 +32,22 @@ public class CardLocked : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         _cardButton = GetComponent<Button>();
         _shopManager = transform.parent.GetComponent<CardShopManager>();
         _cardButton.onClick.AddListener(() => { BuyCard(); });
+
     }
 
     private void BuyCard()
     {
-        this.transform.DOMoveY(50f, 0.5f);
-        this.GetComponent<CanvasGroup>().DOFade(0f, 0.5f);
-        _shopManager.SpawnNewCard(this.gameObject);
-        
+        if (_cardCost <= _shopManager.CurrentBalance)
+        {
+            this.transform.DOMoveY(50f, 0.5f);
+            this.GetComponent<CanvasGroup>().DOFade(0f, 0.5f);
+            _shopManager.SpawnNewCard(this.gameObject);
+
+        }
+        else
+        {
+            this.transform.DOShakePosition(1.5f,10f);
+        }
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
