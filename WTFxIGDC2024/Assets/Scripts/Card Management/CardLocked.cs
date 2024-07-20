@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class CardLocked : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
 
     Button _cardButton;
     CardShopManager _shopManager;
-
     //is set when the card is instantiated
     public float _cardCost;
     public void OnPointerEnter(PointerEventData eventData)
@@ -50,4 +50,13 @@ public class CardLocked : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
     }
 
+    public void SetupCardData(ItemData item)
+    {
+        _cardCost = item.Cost;
+        this.transform.GetChild(0).GetComponent<TMP_Text>().text = item.Name;
+        this.transform.GetChild(1).GetComponent<TMP_Text>().text = _cardCost.ToString()+"$";
+        this.transform.GetChild(2).GetComponent<Image>().sprite = item.Icon;
+        this.transform.GetChild(3).GetComponent<TMP_Text>().text = item.Description;
+
+    }
 }
