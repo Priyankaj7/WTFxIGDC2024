@@ -396,6 +396,35 @@ namespace Minimalist.MapBuilder
 
             this.SelectedPositions.Clear();
         }
+        GameObject tempObject;
+        public void InstantiateTemproryTiles(Vector3 position)
+        {
+            // foreach (Vector3 selectedPosition in this.SelectedPositions)
+            // {
+                // tilePrefab.scale = tileScale;
+
+                // tilePrefab.material = _tileMaterial;
+
+                // tilePrefab.color = tileColor;
+
+                tempObject =  Instantiate(tilePrefab, position + _tileHalfHeight, Quaternion.identity).gameObject;
+                Destroy(tempObject.GetComponent<EditModeInstanceBhv>());
+                Destroy(tempObject.GetComponent<BoxCollider>());
+            // }
+
+        }
+        public void SetTempTilePos(Vector3 position){
+            if(tempObject != null){
+                tempObject.transform.position = position;
+            }
+
+        }
+        void DestroyTemproryTile(){
+            if(tempObject != null){
+                DestroyImmediate(tempObject);
+            }
+            
+        }
 
         public void DestroyTile(Collider collider)
         {
@@ -435,7 +464,8 @@ namespace Minimalist.MapBuilder
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 Physics.Raycast(ray, out RaycastHit prehit, Mathf.Infinity);
 
-                var nearestVertex = prehit.point;
+                // var nearestVertex = prehit.point;
+                Vector3 nearestVertex = FindNearestVertex(mapBuilder._gridTransform,prehit.point);
 
                 // HandleUtility.FindNearestVertex(mousePosition, mapBuilder.GridTransforms, out Vector3 nearestVertex);
 
@@ -470,6 +500,15 @@ namespace Minimalist.MapBuilder
                         case MouseEventsNew.MouseDown:
 
                             mapBuilder.Dragging = bounds.IntersectRay(ray);
+                            if(Dragging){
+                                InstantiateTemproryTiles(nearestVertex);
+                            }
+                            // if (bounds.IntersectRay(ray) && !mapBuilder.SelectedPositions.Contains(nearestVertex))
+                            // {
+                            //     mapBuilder.SelectedPositions.Add(nearestVertex);
+
+                            //     mapBuilder.UpdateGridMesh();
+                            // }
 
                             goto case MouseEventsNew.MouseDrag;
 
@@ -477,9 +516,10 @@ namespace Minimalist.MapBuilder
 
                             if (bounds.IntersectRay(ray) && !mapBuilder.SelectedPositions.Contains(nearestVertex))
                             {
-                                mapBuilder.SelectedPositions.Add(nearestVertex);
+                                SetTempTilePos(nearestVertex);
+                                // mapBuilder.SelectedPositions.Add(nearestVertex);
 
-                                mapBuilder.UpdateGridMesh();
+                                // mapBuilder.UpdateGridMesh();
                             }
 
                             break;
@@ -487,6 +527,18 @@ namespace Minimalist.MapBuilder
                         case MouseEventsNew.MouseLeaveWindow:
 
                         case MouseEventsNew.MouseUp:
+                            if(Dragging){
+                                
+                                if (bounds.IntersectRay(ray) && !mapBuilder.SelectedPositions.Contains(nearestVertex))
+                                {
+                                    mapBuilder.SelectedPositions.Add(nearestVertex);
+
+                                    mapBuilder.UpdateGridMesh();
+                                }
+                                DestroyTemproryTile();
+
+                            }
+                            
 
                             mapBuilder.InstantiateTiles();
 
@@ -528,6 +580,21 @@ namespace Minimalist.MapBuilder
                 //     // InternalEditorUtility.RepaintAllViews();
                 // }
             }
+        }
+
+        Vector3 FindNearestVertex(Transform transform, Vector3 hitPoint){
+            Vector3[] vertices = transform.GetComponent<MeshFilter>().sharedMesh.vertices;
+            float nearestVertexDistance  = Vector3.Distance( vertices[0],hitPoint);
+            int nearestVertexIndex =0;
+            for(int i =1; i< vertices.Length; i++){
+                float distance = Vector3.Distance(hitPoint,vertices[i]);
+                if(distance< nearestVertexDistance){
+                    nearestVertexDistance = distance;
+                    nearestVertexIndex = i;
+                }
+            }
+            return vertices[nearestVertexIndex];
+
         }
     }
 }
