@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Minimalist.MapBuilder
 {
-    [ExecuteInEditMode]
+    // [ExecuteInEditMode]
     [RequireComponent(typeof(MeshFilter))]
     [RequireComponent(typeof(MeshRenderer))]
-    [RequireComponent(typeof(BoxCollider))]
+    // [RequireComponent(typeof(BoxCollider))]
 #pragma warning disable CS0660 // Type defines operator == or operator != but does not override Object.Equals(object o)
 #pragma warning disable CS0661 // Type defines operator == or operator != but does not override Object.GetHashCode()
     public class EditModeInstanceBhv : MonoBehaviour

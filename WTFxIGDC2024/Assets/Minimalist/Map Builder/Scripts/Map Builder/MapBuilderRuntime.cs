@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Unity.Mathematics;
 using UnityEngine;
 // using UnityEditor;
 
@@ -27,7 +28,7 @@ namespace Minimalist.MapBuilder
         [Header("Base:")]
         public EditModeInstanceBhv basePrefab;
         public Color baseColor = Color.black;
-        public Vector3Int baseScale = new Vector3Int(25, 1, 25);
+        public Vector3Int baseScale = new Vector3Int(30, 1, 30);
 
         [Header("Tiles:")]
         public EditModeInstanceBhv tilePrefab;
@@ -100,6 +101,7 @@ namespace Minimalist.MapBuilder
 
             _busy = false;
         }
+        // public GameObject g;
 
         private void PseudoAwake()
         {
@@ -115,6 +117,10 @@ namespace Minimalist.MapBuilder
             _gridTransform.hideFlags = HideFlags.NotEditable;
 
             _gridMeshFilter = _gridTransform.GetComponent<MeshFilter>();
+
+            // for(int i =0; i< _gridMeshFilter.sharedMesh.vertices.Length;i++){
+            //     Instantiate(g,_gridMeshFilter.sharedMesh.vertices[i],Quaternion.identity);
+            // }
 
             if (_gridMeshFilter.sharedMesh == null)
             {
@@ -150,7 +156,7 @@ namespace Minimalist.MapBuilder
                 this.SelectedPositions = new List<Vector3>();
             }
 
-            _offset = _baseTransform.position;
+            _offset = _baseTransform.position + new Vector3(0f,-0.01f,0f);
         }
 
         private void InstantiateGrid()
@@ -231,6 +237,97 @@ namespace Minimalist.MapBuilder
             _tileHalfHeight = Vector3.up * tileScale.y / 2f;
         }
 
+        // public void UpdateGridMesh()
+        // {
+        //     int xSize = baseScale.x - (int)(tileScale.x - 1);
+        //     int zSize = baseScale.z - (int)(tileScale.z - 1);
+
+        //     List<Vector3> allVertices = new List<Vector3>();
+
+        //     for (int i = 0; i < zSize; i++)
+        //     {
+        //         for (int j = 0; j < xSize; j++)
+        //         {
+        //             float x = j - baseScale.x / 2f + tileScale.x / 2f;
+        //             float z = i - baseScale.z / 2f + tileScale.z / 2f;
+
+        //             Vector3 rayOrigin = new Vector3(x, int.MaxValue, z) + _offset;
+
+        //             RaycastHit[] hits = Physics.RaycastAll(rayOrigin, Vector3.down, Mathf.Infinity);
+
+        //             foreach (RaycastHit hit in hits)
+        //             {
+        //                 if (hit.point.y < _offset.y)
+        //                 {
+        //                     continue;
+        //                 }
+
+        //                 float y = hit.point.y - _offset.y;
+
+        //                 Vector3 vertex = new Vector3(x, y, z);
+
+        //                 allVertices.Add(vertex);
+        //             }
+        //         }
+        //     }
+
+        //     _gridVertices = new List<Vector3>(allVertices);
+
+        //     foreach (Vector3 vertex in allVertices)
+        //     {
+        //         bool isValid = true;
+
+        //         Vector3 globalVertex = vertex + _offset + _tileHalfHeight;
+
+        //         Bounds vertexBounds = new Bounds(globalVertex, (Vector3)tileScale * .95f);
+
+        //         Collider[] placedCollidersInReach = Physics.OverlapBox(globalVertex, (Vector3)tileScale / 2f);
+
+        //         foreach (Collider placedTileCollider in placedCollidersInReach)
+        //         {
+        //             if (placedTileCollider == _baseCollider)
+        //             {
+        //                 continue;
+        //             }
+
+        //             if (placedTileCollider.bounds.Intersects(vertexBounds))
+        //             {
+        //                 isValid = false;
+
+        //                 break;
+        //             }
+        //         }
+
+        //         if (!isValid)
+        //         {
+        //             _gridVertices.Remove(vertex);
+
+        //             continue;
+        //         }
+
+        //         foreach (Vector3 selectedPosition in this.SelectedPositions)
+        //         {
+        //             Bounds selectedBounds = new Bounds(selectedPosition + _tileHalfHeight, (Vector3)tileScale * 0.95f);
+
+        //             if (selectedBounds.Intersects(vertexBounds))
+        //             {
+        //                 isValid = false;
+
+        //                 break;
+        //             }
+        //         }
+
+        //         if (!isValid)
+        //         {
+        //             _gridVertices.Remove(vertex);
+        //         }
+        //     }
+
+        //     _gridMeshFilter.sharedMesh.Clear();
+
+        //     _gridMeshFilter.sharedMesh.vertices = _gridVertices.ToArray();
+        // }
+
         public void UpdateGridMesh()
         {
             int xSize = baseScale.x - (int)(tileScale.x - 1);
@@ -238,9 +335,9 @@ namespace Minimalist.MapBuilder
 
             List<Vector3> allVertices = new List<Vector3>();
 
-            for (int i = 0; i < zSize; i++)
+            for (int i = 0; i < zSize; i+=2)
             {
-                for (int j = 0; j < xSize; j++)
+                for (int j = 0; j < xSize; j+=2)
                 {
                     float x = j - baseScale.x / 2f + tileScale.x / 2f;
                     float z = i - baseScale.z / 2f + tileScale.z / 2f;
@@ -322,7 +419,7 @@ namespace Minimalist.MapBuilder
             _gridMeshFilter.sharedMesh.vertices = _gridVertices.ToArray();
         }
 
-        private void OnDrawGizmosSelected()
+        private void OnDrawGizmosSelectedABC()
         {
             if ( _baseTransform == null || _tileParentTransform == null)
             {
@@ -387,11 +484,11 @@ namespace Minimalist.MapBuilder
             {
                 tilePrefab.scale = tileScale;
 
-                tilePrefab.material = _tileMaterial;
+                // tilePrefab.material = _tileMaterial;
 
-                tilePrefab.color = tileColor;
+                // tilePrefab.color = tileColor;
 
-                Instantiate(tilePrefab, selectedPosition + _tileHalfHeight, Quaternion.identity, _tileParentTransform);
+                Instantiate(tilePrefab, selectedPosition, Quaternion.identity, _tileParentTransform);
             }
 
             this.SelectedPositions.Clear();
@@ -401,13 +498,13 @@ namespace Minimalist.MapBuilder
         {
             // foreach (Vector3 selectedPosition in this.SelectedPositions)
             // {
-                // tilePrefab.scale = tileScale;
+                tilePrefab.scale = tileScale;
 
                 // tilePrefab.material = _tileMaterial;
 
                 // tilePrefab.color = tileColor;
 
-                tempObject =  Instantiate(tilePrefab, position + _tileHalfHeight, Quaternion.identity).gameObject;
+                tempObject =  Instantiate(tilePrefab, position , Quaternion.identity).gameObject;
                 Destroy(tempObject.GetComponent<EditModeInstanceBhv>());
                 Destroy(tempObject.GetComponent<BoxCollider>());
             // }
@@ -448,7 +545,7 @@ namespace Minimalist.MapBuilder
                 return;
             }
 
-            int controlId = GUIUtility.GetControlID(FocusType.Passive);
+            // int controlId = GUIUtility.GetControlID(FocusType.Passive);
 
             // HandleUtility.AddDefaultControl(controlId);
 
