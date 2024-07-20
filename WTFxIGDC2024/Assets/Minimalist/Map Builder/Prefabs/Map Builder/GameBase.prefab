@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 8197560517326461780}
   - component: {fileID: 5021770765283404959}
   m_Layer: 0
-  m_Name: ArcadeMachine
-  m_TagString: Untagged
+  m_Name: GameBase
+  m_TagString: BaseTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3934150578139307440}
-  m_Mesh: {fileID: 2532215094185731904, guid: 93a540f6cec676c4fb41afc6d735b203, type: 3}
+  m_Mesh: {fileID: -7513297493162946847, guid: 5b0918fde91fdf1499601d7d8f94e453, type: 3}
 --- !u!23 &1152294534656254046
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0e5dba987a532b9448a28d471dcca432, type: 2}
+  - {fileID: -6538903991835684241, guid: 5b0918fde91fdf1499601d7d8f94e453, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,8 +96,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.39999998, y: 0.72499996, z: 0.53749996}
-  m_Center: {x: 0, y: 0.36249998, z: 0.024999999}
+  m_Size: {x: 1, y: 0.024999999, z: 1}
+  m_Center: {x: 0, y: 0.012499999, z: 0}
 --- !u!114 &5021770765283404959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,4 +112,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 0}
   color: {r: 1, g: 1, b: 1, a: 1}
-  scale: {x: 5, y: 5, z: 5}
+  scale: {x: 2, y: 2, z: 2}

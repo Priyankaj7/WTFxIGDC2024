@@ -55,6 +55,7 @@ namespace Minimalist.MapBuilder
 
         private Vector3 _offset;
         private bool _busy;
+        public bool isBase;
 
         private void Awake()
         {
@@ -82,7 +83,13 @@ namespace Minimalist.MapBuilder
             }
 
             _busy = true;
-             OnSceneGUI();
+            if(isBase){
+                PlaceBaseObject();
+            }
+            else{
+                PlaceNonBaseObject();
+            }
+            
             this.PseudoAwake();
 
             this.ValidateBaseScale();
@@ -489,7 +496,8 @@ namespace Minimalist.MapBuilder
 
                 // tilePrefab.color = tileColor;
 
-                Instantiate(tilePrefab, selectedPosition, Quaternion.identity, _tileParentTransform);
+                var v =Instantiate(tilePrefab, selectedPosition, Quaternion.identity, _tileParentTransform);
+                v.transform.eulerAngles = new Vector3(0,180,0);
             }
 
             this.SelectedPositions.Clear();
@@ -506,6 +514,7 @@ namespace Minimalist.MapBuilder
                 // tilePrefab.color = tileColor;
 
                 tempObject =  Instantiate(tilePrefab, position , Quaternion.identity).gameObject;
+                tempObject.transform.eulerAngles = new Vector3(0,180,0);
                 Destroy(tempObject.GetComponent<EditModeInstanceBhv>());
                 Destroy(tempObject.GetComponent<BoxCollider>());
             // }
@@ -537,7 +546,7 @@ namespace Minimalist.MapBuilder
             DestroyImmediate(_tileParentTransform.gameObject);
         }
 
-        private void OnSceneGUI()
+        private void PlaceBaseObject()
         {
             MapBuilderRuntime mapBuilder = this;
 
@@ -564,7 +573,7 @@ namespace Minimalist.MapBuilder
 
                 // var nearestVertex = prehit.point;
                 Vector3 nearestVertex = FindNearestVertex(mapBuilder._gridTransform,prehit.point);
-                Debug.Log(nearestVertex.ToString("F4"));
+                // Debug.Log(nearestVertex.ToString("F4"));
 
                 // HandleUtility.FindNearestVertex(mousePosition, mapBuilder.GridTransforms, out Vector3 nearestVertex);
 
@@ -629,6 +638,163 @@ namespace Minimalist.MapBuilder
                             if(Dragging){
                                 
                                 if (bounds.IntersectRay(ray) && !mapBuilder.SelectedPositions.Contains(nearestVertex) && nearestVertex.y <0.52f)
+                                {
+                                    mapBuilder.SelectedPositions.Add(nearestVertex);
+
+                                    mapBuilder.UpdateGridMesh();
+                                }
+                                DestroyTemproryTile();
+
+                            }
+                            
+
+                            mapBuilder.InstantiateTiles();
+
+                            mapBuilder.Dragging = false;
+
+                            break;
+                    }
+
+                    // InternalEditorUtility.RepaintAllViews();
+                }
+
+                // right mouse button
+                // else if (e.button == 1 && hit.collider != null)
+                // {
+                //     switch (e.type)
+                //     {
+                //         case EventType.MouseDown:
+
+                //             GUIUtility.hotControl = controlId;
+
+                //             _dragOnsetTileInstance = hit.transform.GetComponent<EditModeInstanceBhv>();
+
+                //             break;
+
+                //         case EventType.MouseDrag:
+
+                //         case EventType.MouseUp:
+
+                //             EditModeInstanceBhv tileInstance = hit.transform.GetComponent<EditModeInstanceBhv>();
+
+                //             if (tileInstance == _dragOnsetTileInstance)
+                //             {
+                //                 mapBuilder.DestroyTile(hit.collider);
+                //             }
+
+                //             break;
+                //     }
+
+                //     // InternalEditorUtility.RepaintAllViews();
+                // }
+            }
+        }
+         private void PlaceNonBaseObject()
+        {
+            MapBuilderRuntime mapBuilder = this;
+
+            if (mapBuilder == null || !mapBuilder.DoneInstantiating)
+            {
+                return;
+            }
+
+            // int controlId = GUIUtility.GetControlID(FocusType.Passive);
+
+            // HandleUtility.AddDefaultControl(controlId);
+
+            // Event e = Event.current;
+            // I
+            // if(Input.mo)
+
+            // if (!e.alt && !e.shift && !e.control)
+            {
+                Vector3 mousePosition = Input.mousePosition;
+
+                // Ray ray = HandleUtility.GUIPointToWorldRay(mousePosition);
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                Physics.Raycast(ray, out RaycastHit prehit, Mathf.Infinity);
+
+                // var nearestVertex = prehit.point;
+                Vector3 nearestVertex = FindNearestVertex(mapBuilder._gridTransform,prehit.point);
+                Debug.Log(nearestVertex.ToString("F4"));
+
+                Ray rayDown = new Ray(nearestVertex + new Vector3(0,1f,0),Vector3.down);
+                Physics.Raycast(rayDown, out RaycastHit baseObjCheck, Mathf.Infinity);
+                bool isBasePresent = false;
+                if(baseObjCheck.collider != null ){
+                    isBasePresent = baseObjCheck.collider.gameObject.CompareTag("BaseTile");
+                    Debug.Log("isBaseObjectPresent:  " + isBasePresent);
+                }
+                
+                
+                // Debug.Log(nearestVertex.ToString("F4"));
+
+                // HandleUtility.FindNearestVertex(mousePosition, mapBuilder.GridTransforms, out Vector3 nearestVertex);
+
+                mapBuilder.HoveredPosition = nearestVertex;
+
+                Bounds bounds = new Bounds(nearestVertex + Vector3.up * mapBuilder.tileScale.y / 2f, mapBuilder.tileScale);
+
+                Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity);
+                // if(hit.transform == _gridTransform){
+                //     hit.point;
+                // }
+
+                // left mouse button
+                MouseEventsNew mEvent;// =  MouseEventsNew.MouseDown;
+                if(Input.GetMouseButtonDown(0)){
+                    mEvent = MouseEventsNew.MouseDown;
+                }
+                else if(Input.GetMouseButton(0)){
+                    mEvent = MouseEventsNew.MouseDrag;
+                }
+                else if(Input.GetMouseButtonUp(0)){
+                    mEvent = MouseEventsNew.MouseUp;
+                }
+                else{
+                    mEvent = MouseEventsNew.MouseLeaveWindow;
+                }
+
+                //if (e.button == 0)
+                {
+                    switch (mEvent)
+                    {
+                        case MouseEventsNew.MouseDown:
+
+                            mapBuilder.Dragging = bounds.IntersectRay(ray);
+                            if(Dragging){
+                                if(isBasePresent){
+                                    InstantiateTemproryTiles(nearestVertex);
+                                }
+                                
+                            }
+                            // if (bounds.IntersectRay(ray) && !mapBuilder.SelectedPositions.Contains(nearestVertex))
+                            // {
+                            //     mapBuilder.SelectedPositions.Add(nearestVertex);
+
+                            //     mapBuilder.UpdateGridMesh();
+                            // }
+
+                            goto case MouseEventsNew.MouseDrag;
+
+                        case MouseEventsNew.MouseDrag:
+
+                            if (bounds.IntersectRay(ray) && !mapBuilder.SelectedPositions.Contains(nearestVertex) && isBasePresent)
+                            {
+                                SetTempTilePos(nearestVertex);
+                                // mapBuilder.SelectedPositions.Add(nearestVertex);
+
+                                // mapBuilder.UpdateGridMesh();
+                            }
+
+                            break;
+
+                        case MouseEventsNew.MouseLeaveWindow:
+
+                        case MouseEventsNew.MouseUp:
+                            if(Dragging){
+                                
+                                if (bounds.IntersectRay(ray) && !mapBuilder.SelectedPositions.Contains(nearestVertex) && isBasePresent)
                                 {
                                     mapBuilder.SelectedPositions.Add(nearestVertex);
 
