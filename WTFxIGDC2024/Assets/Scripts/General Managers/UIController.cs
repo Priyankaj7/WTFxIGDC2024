@@ -6,18 +6,17 @@ using UnityEngine;
 public class UIController : MonoBehaviour
 {
     [SerializeField]TMP_Text _bankBalanceText;
-    void Start()
+    [SerializeField]TMP_Text _earnRateText;
+    [SerializeField]TMP_Text _levelText;
+  
+    public void UpdateBankBalance(float balance , float earnRate)
     {
-        
-    }
+        _bankBalanceText.text = "Bal: "+balance.ToString()+"$";
+        _earnRateText.text = "Rate : "+ earnRate.ToString()+"$/s";
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
-    public void UpdateBankBalance(float balance)
+    public void SetLevelText(string s)
     {
-        _bankBalanceText.text = "Current Balance: "+balance.ToString();
+        _levelText.text = s;
     }
 }

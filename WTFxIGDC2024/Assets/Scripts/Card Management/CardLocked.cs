@@ -13,6 +13,7 @@ public class CardLocked : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     CardShopManager _shopManager;
     //is set when the card is instantiated
     public float _cardCost;
+    private string _cardName;
     public void OnPointerEnter(PointerEventData eventData)
     {
         Debug.Log("Card enter");
@@ -43,6 +44,9 @@ public class CardLocked : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             this.GetComponent<CanvasGroup>().DOFade(0f, 0.5f);
             _shopManager.SpawnNewCard(this.gameObject);
 
+            //Deploy the card.
+            GameController.instance.SetCurrentCard(_cardName);
+
         }
         else
         {
@@ -53,6 +57,7 @@ public class CardLocked : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void SetupCardData(ItemData item)
     {
         _cardCost = item.Cost;
+        _cardName = item.Name;
         this.transform.GetChild(0).GetComponent<TMP_Text>().text = item.Name;
         this.transform.GetChild(1).GetComponent<TMP_Text>().text = _cardCost.ToString()+"$";
         this.transform.GetChild(2).GetComponent<Image>().sprite = item.Icon;

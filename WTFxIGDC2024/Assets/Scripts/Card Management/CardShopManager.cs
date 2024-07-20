@@ -21,7 +21,7 @@ public class CardShopManager : MonoBehaviour
         
         GenerateCards();
         _uiController = GameObject.FindObjectOfType<UIController>();
-        _uiController.UpdateBankBalance(CurrentBalance);
+        _uiController.UpdateBankBalance(CurrentBalance , 0f);
     }
 
     private void GenerateCards()
@@ -43,7 +43,7 @@ public class CardShopManager : MonoBehaviour
     public async void SpawnNewCard(GameObject oldCard)
     {
         CurrentBalance -= oldCard.GetComponent<CardLocked>()._cardCost;
-        _uiController.UpdateBankBalance(CurrentBalance);
+        _uiController.UpdateBankBalance(CurrentBalance, 0f);
         //Logic to be added for new card
         await Task.Delay(1000);
         float PosX = oldCard.GetComponent<RectTransform>().position.x;

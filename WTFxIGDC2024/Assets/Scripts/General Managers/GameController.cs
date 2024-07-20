@@ -1,3 +1,4 @@
+using Minimalist.MapBuilder;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -23,6 +24,10 @@ public class GameController : MonoBehaviour
     public float TotalEarnRate;
     private CardShopManager _cardShopManager;
     private UIController _uiController;
+    private MapBuilderRuntime _mapBuilder;
+    [SerializeField]
+    EditModeInstanceBhv[] _allCardItems;
+
     [SerializeField]private CardItemData _cardItemData;
     float _EarningInterval = 1f;
     public List<ICardItem> _currentItems = new List<ICardItem>();
@@ -30,7 +35,12 @@ public class GameController : MonoBehaviour
     {
         _cardShopManager = FindObjectOfType<CardShopManager>();
         _uiController = FindObjectOfType<UIController>();
+        _mapBuilder = FindObjectOfType<MapBuilderRuntime>();
+        _uiController.SetLevelText("Day 1");
     }
+
+
+    
 
     public void AddCurrentItem(ICardItem item)
     {
@@ -53,14 +63,33 @@ public class GameController : MonoBehaviour
         if (_EarningInterval <= 0)
         {
             _cardShopManager.CurrentBalance += TotalEarnRate;
-            _uiController.UpdateBankBalance(_cardShopManager.CurrentBalance);
+            _uiController.UpdateBankBalance(_cardShopManager.CurrentBalance , TotalEarnRate);
             _EarningInterval = 1f;
         }
     }
 
+
+    #region Card Management
+
+   
     public ItemData GetRandomItemData()
     {
         int rand = Random.RandomRange(0, _cardItemData.AllItems.Length);
         return _cardItemData.AllItems[rand];
     }
+
+    public void SetCurrentCard(string itemName)
+    {
+        switch (itemName)
+        {
+            case "Floor":
+                _mapBuilder.SetTileObject(_allCardItems[0], true);
+                break;
+            case "Arcade Machine":
+                _mapBuilder.SetTileObject(_allCardItems[1], false);
+                break;
+        }
+    }
+
+    #endregion
 }

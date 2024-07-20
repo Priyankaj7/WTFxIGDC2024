@@ -75,6 +75,12 @@ namespace Minimalist.MapBuilder
         //     }
         // }
 
+        public void SetTileObject(EditModeInstanceBhv prefab , bool isbase = false)
+        {
+            isBase = isbase;
+            tilePrefab = prefab;
+        }
+
         private void Update()
         {
             if (_busy)
@@ -499,6 +505,9 @@ namespace Minimalist.MapBuilder
                 var v =Instantiate(tilePrefab, selectedPosition, Quaternion.identity, _tileParentTransform);
                 v.transform.eulerAngles = new Vector3(0,180,0);
             }
+
+            //Temp code for clearing the tileprefac reference -Priyankaj
+            tilePrefab = null;
 
             this.SelectedPositions.Clear();
         }
