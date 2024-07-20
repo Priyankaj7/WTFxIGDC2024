@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class ArcadeMachine : MonoBehaviour,ICardItem
 {
-
-    float _earnRate;
+    [SerializeField] float _repairCost;
+    [SerializeField] float _boostRate;
+    [SerializeField] float _repairTimer;
+    [SerializeField]float _earnRate;
     bool isBoosted;
     bool needsRepair;
     public float GetEarnRate()
     {
-        return _earnRate;
+        if (!needsRepair)
+        {
+            return isBoosted ? _earnRate + _boostRate : _earnRate;
+        }
+        else
+        {
+            return 0f;
+        }
     }
 
     public bool IsBoosted()
@@ -23,16 +32,15 @@ public class ArcadeMachine : MonoBehaviour,ICardItem
         return needsRepair;
     }
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
-        
+        if(!needsRepair)
+        _repairTimer-= Time.deltaTime;
+
+        if (_repairTimer <= 0)
+        {
+            needsRepair = true;
+        }
     }
 }

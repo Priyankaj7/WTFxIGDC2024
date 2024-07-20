@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de5eb89a009efcd4b9c2dcf09e92202c, type: 3}
+  m_Name: Card Item Data
+  m_EditorClassIdentifier: 
+  AllItems:
+  - Name: Floor
+    Description: Used to unlock more area
+    Cost: 5
+    Icon: {fileID: 21300000, guid: 2ce5432235803a547aef13e631bd246f, type: 3}
+  - Name: Arcade Machine
+    Description: Generates Revenue Overtime
+    Cost: 10
+    Icon: {fileID: 21300000, guid: b7cc8f92d2cbb3e4095f0934d8202aed, type: 3}
