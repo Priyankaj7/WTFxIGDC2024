@@ -5,7 +5,8 @@ using UnityEngine;
 public interface ICardItem 
 {
     bool NeedsRepair();
-
     bool IsBoosted();
-    float GetEarnRate();
+    abstract float GetEarnRate();
+    void RepairMachine();
+    void BoostItem();
 }

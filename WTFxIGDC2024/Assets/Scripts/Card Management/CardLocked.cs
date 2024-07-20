@@ -16,14 +16,12 @@ public class CardLocked : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private string _cardName;
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("Card enter");
         this.transform.DOScale(new Vector3(1.5f, 1.5f, 1.5f), 0.5f);
         this.GetComponent<RectTransform>().SetAsLastSibling();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("Card Exit");
         this.transform.DOScale(new Vector3(1f, 1f, 1f), 0.5f);
     }
 
@@ -46,7 +44,7 @@ public class CardLocked : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
             //Deploy the card.
             GameController.instance.SetCurrentCard(_cardName);
-
+           // GameController.instance.AddCurrentItem()
         }
         else
         {
