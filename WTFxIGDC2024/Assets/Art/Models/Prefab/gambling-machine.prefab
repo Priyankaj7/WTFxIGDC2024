@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5394161094500960669}
   - component: {fileID: 9039906954825778744}
   - component: {fileID: 6525931584303510258}
+  - component: {fileID: 3563960749143909987}
   m_Layer: 0
   m_Name: gambling-machine
   m_TagString: Untagged
@@ -84,6 +85,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3563960749143909987
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4724337869530207015}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5245, y: 0.7758819, z: 0.48749998}
+  m_Center: {x: -0.037249997, y: 0.38794094, z: 0}
 --- !u!1001 &3069460479547177725
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 8219105361727890029}
   - component: {fileID: 5026012042654625224}
   - component: {fileID: 7087271748924823810}
+  - component: {fileID: 8580433751355584371}
   m_Layer: 0
   m_Name: ticket-machine
   m_TagString: Untagged
@@ -168,6 +169,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8580433751355584371
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8744847444828551383}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.39999998, y: 0.72499996, z: 0.3958323}
+  m_Center: {x: 0, y: 0.36249998, z: 0.035416164}
 --- !u!1001 &1569955505896328861
 PrefabInstance:
   m_ObjectHideFlags: 0
