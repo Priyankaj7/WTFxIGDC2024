@@ -152,7 +152,7 @@ Transform:
   m_GameObject: {fileID: 16294582}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 30, y: 1, z: 30}
+  m_LocalScale: {x: 16, y: 1, z: 16}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2133893902}
@@ -7769,8 +7769,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basePrefab: {fileID: 5021770765283404959, guid: 89fb2b773c013964e94eeff0e2e1c9ab, type: 3}
   baseColor: {r: 0, g: 0, b: 0, a: 1}
-  baseScale: {x: 20, y: 1, z: 20}
-  tilePrefab: {fileID: 5021770765283404959, guid: 162240f15db5b4f4789a3dda62a3a3cd, type: 3}
+  baseScale: {x: 16, y: 1, z: 16}
+  tilePrefab: {fileID: 5021770765283404959, guid: f3cee18e13e854a52b8f66a1618c9594, type: 3}
   tileColor: {r: 1, g: 1, b: 1, a: 1}
   tileScale: {x: 2, y: 2, z: 2}
 --- !u!21 &2146250876

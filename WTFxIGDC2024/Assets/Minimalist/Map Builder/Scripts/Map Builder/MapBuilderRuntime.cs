@@ -66,13 +66,13 @@ namespace Minimalist.MapBuilder
 // #endif
         }
 
-        private void OnValidate()
-        {
-            if (_gridTransform != null || _baseTransform != null && _baseTransform.localScale.y > baseScale.y)
-            {
-                this.Update();
-            }
-        }
+        // private void OnValidate()
+        // {
+        //     if (_gridTransform != null || _baseTransform != null && _baseTransform.localScale.y > baseScale.y)
+        //     {
+        //         this.Update();
+        //     }
+        // }
 
         private void Update()
         {
@@ -363,6 +363,7 @@ namespace Minimalist.MapBuilder
             }
 
             _gridVertices = new List<Vector3>(allVertices);
+            
 
             foreach (Vector3 vertex in allVertices)
             {
@@ -415,57 +416,57 @@ namespace Minimalist.MapBuilder
             }
 
             _gridMeshFilter.sharedMesh.Clear();
-
+            // Debug.Log("grid vertices count "+ _gridVertices.Count);  
             _gridMeshFilter.sharedMesh.vertices = _gridVertices.ToArray();
         }
 
-        private void OnDrawGizmosSelectedABC()
-        {
-            if ( _baseTransform == null || _tileParentTransform == null)
-            {
-                return;
-            }
+        // private void OnDrawGizmosSelectedABC()
+        // {
+        //     if ( _baseTransform == null || _tileParentTransform == null)
+        //     {
+        //         return;
+        //     }
 
-            Gizmos.color = new Color(tileColor.r, tileColor.g, tileColor.b, .01f);
+        //     Gizmos.color = new Color(tileColor.r, tileColor.g, tileColor.b, .01f);
 
-            for (int i = 0; i < _gridVertices.Count; i++)
-            {
-                Gizmos.DrawCube(_gridVertices[i] + _offset + _tileHalfHeight, tileScale);
+        //     for (int i = 0; i < _gridVertices.Count; i++)
+        //     {
+        //         Gizmos.DrawCube(_gridVertices[i] + _offset + _tileHalfHeight, tileScale);
 
-                Gizmos.DrawWireCube(_gridVertices[i] + _offset + _tileHalfHeight, tileScale);
-            }
+        //         Gizmos.DrawWireCube(_gridVertices[i] + _offset + _tileHalfHeight, tileScale);
+        //     }
 
-            if (!this.Dragging)
-            {
-                Gizmos.color = new Color(tileColor.r, tileColor.g, tileColor.b, .25f);
+        //     if (!this.Dragging)
+        //     {
+        //         Gizmos.color = new Color(tileColor.r, tileColor.g, tileColor.b, .25f);
 
-                Gizmos.DrawCube(this.HoveredPosition + _tileHalfHeight, tileScale);
+        //         Gizmos.DrawCube(this.HoveredPosition + _tileHalfHeight, tileScale);
 
-                Gizmos.color = new Color(tileColor.r, tileColor.g, tileColor.b, .5f);
+        //         Gizmos.color = new Color(tileColor.r, tileColor.g, tileColor.b, .5f);
 
-                Gizmos.DrawWireCube(this.HoveredPosition + _tileHalfHeight, tileScale);
-            }
-            else
-            {
-                foreach (Vector3 selectedPosition in this.SelectedPositions)
-                {
-                    Gizmos.color = new Color(tileColor.r, tileColor.g, tileColor.b, .25f);
+        //         Gizmos.DrawWireCube(this.HoveredPosition + _tileHalfHeight, tileScale);
+        //     }
+        //     else
+        //     {
+        //         foreach (Vector3 selectedPosition in this.SelectedPositions)
+        //         {
+        //             Gizmos.color = new Color(tileColor.r, tileColor.g, tileColor.b, .25f);
 
-                    Gizmos.DrawCube(selectedPosition + _tileHalfHeight, tileScale);
+        //             Gizmos.DrawCube(selectedPosition + _tileHalfHeight, tileScale);
 
-                    Gizmos.color = new Color(tileColor.r, tileColor.g, tileColor.b, .5f);
+        //             Gizmos.color = new Color(tileColor.r, tileColor.g, tileColor.b, .5f);
 
-                    Gizmos.DrawWireCube(selectedPosition + _tileHalfHeight, tileScale);
-                }
-            }
+        //             Gizmos.DrawWireCube(selectedPosition + _tileHalfHeight, tileScale);
+        //         }
+        //     }
 
-            //Gizmos.color = new Color(1 - baseColor.r, 1 - baseColor.g, 1 - baseColor.b, .5f);
+        //     //Gizmos.color = new Color(1 - baseColor.r, 1 - baseColor.g, 1 - baseColor.b, .5f);
 
-            //for (int i = 0; i < _gridVertices.Count; i++)
-            //{
-            //    Gizmos.DrawSphere(_gridVertices[i] + _offset + Vector3.up * .05f, .1f);
-            //}
-        }
+        //     //for (int i = 0; i < _gridVertices.Count; i++)
+        //     //{
+        //     //    Gizmos.DrawSphere(_gridVertices[i] + _offset + Vector3.up * .05f, .1f);
+        //     //}
+        // }
 
         public void InstantiateTile(Vector3 position)
         {
@@ -563,6 +564,7 @@ namespace Minimalist.MapBuilder
 
                 // var nearestVertex = prehit.point;
                 Vector3 nearestVertex = FindNearestVertex(mapBuilder._gridTransform,prehit.point);
+                Debug.Log(nearestVertex.ToString("F4"));
 
                 // HandleUtility.FindNearestVertex(mousePosition, mapBuilder.GridTransforms, out Vector3 nearestVertex);
 
@@ -611,7 +613,7 @@ namespace Minimalist.MapBuilder
 
                         case MouseEventsNew.MouseDrag:
 
-                            if (bounds.IntersectRay(ray) && !mapBuilder.SelectedPositions.Contains(nearestVertex))
+                            if (bounds.IntersectRay(ray) && !mapBuilder.SelectedPositions.Contains(nearestVertex) && nearestVertex.y <0.52f)
                             {
                                 SetTempTilePos(nearestVertex);
                                 // mapBuilder.SelectedPositions.Add(nearestVertex);
@@ -626,7 +628,7 @@ namespace Minimalist.MapBuilder
                         case MouseEventsNew.MouseUp:
                             if(Dragging){
                                 
-                                if (bounds.IntersectRay(ray) && !mapBuilder.SelectedPositions.Contains(nearestVertex))
+                                if (bounds.IntersectRay(ray) && !mapBuilder.SelectedPositions.Contains(nearestVertex) && nearestVertex.y <0.52f)
                                 {
                                     mapBuilder.SelectedPositions.Add(nearestVertex);
 
