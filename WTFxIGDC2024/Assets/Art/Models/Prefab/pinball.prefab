@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 4808606513215516084}
   - component: {fileID: 8436440229544993297}
   - component: {fileID: 5976477886633793243}
+  - component: {fileID: 3626249365921209059}
   m_Layer: 0
   m_Name: pinball
   m_TagString: Untagged
@@ -168,6 +169,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3626249365921209059
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5327840311826151182}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.7416666, z: 0.75}
+  m_Center: {x: 0, y: 0.3708333, z: 0.049999997}
 --- !u!1001 &24768274290403246
 PrefabInstance:
   m_ObjectHideFlags: 0

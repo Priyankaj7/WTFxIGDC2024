@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6223678961401928890}
   - component: {fileID: 7057466755444118303}
   - component: {fileID: 5050188670979598293}
+  - component: {fileID: 4826615183534316926}
   m_Layer: 0
   m_Name: prizes
   m_TagString: Untagged
@@ -84,6 +85,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4826615183534316926
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6707306419682493952}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.79999995, y: 0.8000001, z: 0.39999998}
+  m_Center: {x: 0, y: 0.40000004, z: 0}
 --- !u!1001 &5533599403286055340
 PrefabInstance:
   m_ObjectHideFlags: 0
