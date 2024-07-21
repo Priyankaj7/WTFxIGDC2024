@@ -1674,19 +1674,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1537903272793656133, guid: 5dc252182848d0f489c0fae476591f46, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 5.3985835e+25
+      value: 6e-44
       objectReference: {fileID: 0}
     - target: {fileID: 1537903272793656133, guid: 5dc252182848d0f489c0fae476591f46, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 1.05e-43
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1537903272793656133, guid: 5dc252182848d0f489c0fae476591f46, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 4.2105167e-11
+      value: 1e-44
       objectReference: {fileID: 0}
     - target: {fileID: 1537903272793656133, guid: 5dc252182848d0f489c0fae476591f46, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 6.9e-44
+      value: 1.5065e-41
       objectReference: {fileID: 0}
     - target: {fileID: 1713955434925921045, guid: 5dc252182848d0f489c0fae476591f46, type: 3}
       propertyPath: playOnAwake
@@ -3648,11 +3648,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TotalEarnRate: 1
-  LevelTarget: 1000
+  LevelTarget: 5000
   _allCardItems:
   - {fileID: 5021770765283404959, guid: f3cee18e13e854a52b8f66a1618c9594, type: 3}
   - {fileID: -1126388526451241002, guid: 1c34cc9e200b5e94aabf1ba262ee5f45, type: 3}
+  - {fileID: -3305112206442902554, guid: 9679aba737b31ac4dae3923dfbe3b277, type: 3}
   _cardItemData: {fileID: 11400000, guid: 608689373b45aad4e8517c245e696ed9, type: 2}
+  _currentItems: []
 --- !u!1001 &1750510718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4717,7 +4719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cardPrefab: {fileID: 4239733280103805886, guid: a980c1152c39df741b71a60b5ca85a29, type: 3}
-  CurrentBalance: 10
+  CurrentBalance: 1000
 --- !u!1001 &2023986675
 PrefabInstance:
   m_ObjectHideFlags: 0

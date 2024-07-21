@@ -65,7 +65,7 @@ public class GameController : MonoBehaviour
         TotalEarnRate = 0;
         for (int i = 0; i < _currentItems.Count; i++)
         {
-            TotalEarnRate += _currentItems[i].GetComponent<ArcadeMachine>().GetEarnRate();
+            TotalEarnRate += _currentItems[i].GetComponent<ICardItem>().GetEarnRate();
         }
     }
     // Update is called once per frame

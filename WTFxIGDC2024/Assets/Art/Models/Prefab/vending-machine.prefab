@@ -12,13 +12,15 @@ GameObject:
   - component: {fileID: 801932374194358493}
   - component: {fileID: 3226264496002399255}
   - component: {fileID: 5080162959448600792}
+  - component: {fileID: -3305112206442902554}
+  - component: {fileID: 8533567622752733060}
   m_Layer: 0
   m_Name: vending-machine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4363656723529107320
 Transform:
   m_ObjectHideFlags: 0
@@ -99,6 +101,37 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.75, z: 0.475}
   m_Center: {x: 0, y: 0.375, z: 0.012500003}
+--- !u!114 &-3305112206442902554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4018620471670136258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d287d14b4e0da434b87b8af5e59eb33f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 0}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  scale: {x: 1, y: 1, z: 1}
+--- !u!114 &8533567622752733060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4018620471670136258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eec0a72a2351a3d4486ca1ce5c1f68cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _repairCost: 100
+  _boostRate: 10
+  _repairTimer: 80
+  _earnRate: 10
 --- !u!1 &4141452497050249540
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,7 +394,8 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3455498449517880852, guid: e62e775cb5c996a4c944ff20f3cec481, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e62e775cb5c996a4c944ff20f3cec481, type: 3}
 --- !u!4 &6157353778987503689 stripped
 Transform:

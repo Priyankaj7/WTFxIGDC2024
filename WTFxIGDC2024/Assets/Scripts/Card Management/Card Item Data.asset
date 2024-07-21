@@ -19,5 +19,13 @@ MonoBehaviour:
     Icon: {fileID: 21300000, guid: 2ce5432235803a547aef13e631bd246f, type: 3}
   - Name: Arcade Machine
     Description: Generates Revenue Overtime
-    Cost: 10
+    Cost: 200
     Icon: {fileID: 21300000, guid: b7cc8f92d2cbb3e4095f0934d8202aed, type: 3}
+  - Name: Vending Machine
+    Description: Generates Revenue Overtime
+    Cost: 100
+    Icon: {fileID: 21300000, guid: 1219c96b2f8513b4487cb576105f6a8c, type: 3}
+  - Name: Ticket Machine
+    Description: Generates Revenue Overtime
+    Cost: 120
+    Icon: {fileID: 21300000, guid: 9963547ee0712434a9f12329c82442a1, type: 3}

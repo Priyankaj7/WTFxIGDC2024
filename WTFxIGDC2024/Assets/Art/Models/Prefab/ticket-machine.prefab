@@ -210,13 +210,14 @@ GameObject:
   - component: {fileID: 5026012042654625224}
   - component: {fileID: 7087271748924823810}
   - component: {fileID: 8580433751355584371}
+  - component: {fileID: 8191739098676095068}
   m_Layer: 0
   m_Name: ticket-machine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8219105361727890029
 Transform:
   m_ObjectHideFlags: 0
@@ -298,6 +299,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.39999998, y: 0.72499996, z: 0.3958323}
   m_Center: {x: 0, y: 0.36249998, z: 0.035416164}
+--- !u!114 &8191739098676095068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8744847444828551383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d287d14b4e0da434b87b8af5e59eb33f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 0}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  scale: {x: 1, y: 1, z: 1}
 --- !u!1001 &1569955505896328861
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -395,6 +411,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3049428253405200658, guid: e62e775cb5c996a4c944ff20f3cec481, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3455498449517880852, guid: e62e775cb5c996a4c944ff20f3cec481, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4346457330195515200, guid: e62e775cb5c996a4c944ff20f3cec481, type: 3}

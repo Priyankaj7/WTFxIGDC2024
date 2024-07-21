@@ -513,7 +513,7 @@ namespace Minimalist.MapBuilder
                 v.transform.eulerAngles = new Vector3(0, 180, 0);
                 //Priynakaj - Turned off the bool for avoiding multiple deploy from single card
                 _placedOnce = true;
-                GameController.instance.AddCurrentItem(tilePrefab.gameObject );
+                GameController.instance.AddCurrentItem(v.gameObject);
                 
             }
 

@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class ArcadeMachine : MonoBehaviour, ICardItem
+public class VendingMachine : MonoBehaviour ,ICardItem
 {
     [SerializeField] float _repairCost;
     [SerializeField] float _boostRate;
@@ -11,8 +10,10 @@ public class ArcadeMachine : MonoBehaviour, ICardItem
     [SerializeField] float _earnRate;
     private bool isBoosted;
     bool needsRepair;
-
-
+    public void BoostItem()
+    {
+        isBoosted = true;
+    }
 
     public float GetEarnRate()
     {
@@ -36,10 +37,14 @@ public class ArcadeMachine : MonoBehaviour, ICardItem
         return needsRepair;
     }
 
+    public void RepairMachine()
+    {
+        needsRepair = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
-
         if (!needsRepair)
         {
             _repairTimer -= Time.deltaTime;
@@ -58,29 +63,14 @@ public class ArcadeMachine : MonoBehaviour, ICardItem
             Collider[] colliders = Physics.OverlapBox(this.transform.localPosition, new Vector3(2.5f, 2.5f, 2.5f), Quaternion.identity, mask);
             foreach (Collider collider in colliders)
             {
-                if (collider.GetComponent<ArcadeMachine>() && collider.gameObject != this.gameObject)
+                if (collider.GetComponent<VendingMachine>() && collider.gameObject != this.gameObject)
                 {
                     this.isBoosted = true;
-                    _earnRate += _boostRate;
+                    _earnRate -= _boostRate;
                     this.GetComponentInChildren<ParticleSystem>().Play();
                     GameController.instance.UpdateCurrentItem(this.gameObject);
                 }
             }
         }
-    }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(this.transform.localPosition, new Vector3(2.5f, 2.5f, 2.5f));
-    }
-
-    public void RepairMachine()
-    {
-        needsRepair = false;
-    }
-
-    public void BoostItem()
-    {
-        isBoosted = true;
     }
 }
