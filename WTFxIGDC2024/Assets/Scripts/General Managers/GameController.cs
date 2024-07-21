@@ -93,17 +93,17 @@ public class GameController : MonoBehaviour
             _uiController.UpdateBankBalance(_cardShopManager.CurrentBalance, TotalEarnRate);
             _EarningInterval = 1f;
 
-            if (_cardShopManager.CurrentBalance >= (LevelTarget * 0.1))
+            if (_cardShopManager.CurrentBalance >= (LevelTarget * 0.05))
             {
                 ItemWeight[3] = 5;
                 ItemWeight[4] = 5;
             }
-            if (_cardShopManager.CurrentBalance >= (LevelTarget * 0.3))
+            if (_cardShopManager.CurrentBalance >= (LevelTarget * 0.1))
             {
                 ItemWeight[5] = 5;
                 ItemWeight[6] = 5;
             }
-            if (_cardShopManager.CurrentBalance >= (LevelTarget * 0.6))
+            if (_cardShopManager.CurrentBalance >= (LevelTarget * 0.3))
             {
                 ItemWeight[7] = 5;
                 ItemWeight[8] = 5;
@@ -125,7 +125,7 @@ public class GameController : MonoBehaviour
             _uiController.SetLevelText("Day " + levelDays + "/25");
             if (levelDays > 25)
             {
-
+                _uiController.GameOver();
             }
         }
     }

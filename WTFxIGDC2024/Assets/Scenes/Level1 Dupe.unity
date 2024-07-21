@@ -3645,7 +3645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3997,7 +3997,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1195626384}
   m_LocalRotation: {x: 0.22302441, y: 0.37136588, z: -0.09237973, w: 0.8965565}
-  m_LocalPosition: {x: -20, y: 15, z: -20}
+  m_LocalPosition: {x: -20, y: 17.1, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4445,7 +4445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5428,7 +5428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TotalEarnRate: 1
-  LevelTarget: 1000000
+  LevelTarget: 100000
   levelDays: 1
   sunDayFiller: {fileID: 1795092706}
   _allCardItems:
@@ -5444,7 +5444,7 @@ MonoBehaviour:
   _cardItemData: {fileID: 11400000, guid: 608689373b45aad4e8517c245e696ed9, type: 2}
   _currentItems: []
   _customer: {fileID: 1170715399}
-  ItemWeight: 32000000140000000a000000000000000000000000000000000000000000000000000000
+  ItemWeight: 140000000500000001000000000000000000000000000000000000000000000000000000
 --- !u!1001 &1750510718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5576,7 +5576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.99607843, g: 0.7481177, b: 0.43921572, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
