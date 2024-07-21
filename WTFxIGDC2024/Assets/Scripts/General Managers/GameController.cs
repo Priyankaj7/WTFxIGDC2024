@@ -43,6 +43,8 @@ public class GameController : MonoBehaviour
     float _EarningInterval = 1f;
     public List<GameObject> _currentItems = new List<GameObject>();
 
+    [SerializeField] GameObject _customer;
+    int customerCount = 0;
     public int[] ItemWeight = new int[9];
     void Start()
     {
@@ -175,9 +177,15 @@ public class GameController : MonoBehaviour
             case "Floor":
                 _mapBuilder.SetTileObject(_allCardItems[0], true);
                 floorCount++;
+                customerCount++;
                 if (floorCount >= 46)
                 {
                     ItemWeight[0] = 0;
+                }
+                if (customerCount >= 8)
+                {
+                    customerCount=0;
+                    GameObject customer = Instantiate(_customer, new Vector3(1f, 1f, 1f), Quaternion.identity);
                 }
                 break;
             case "Arcade Machine":
