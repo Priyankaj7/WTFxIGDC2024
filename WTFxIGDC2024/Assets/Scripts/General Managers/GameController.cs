@@ -83,6 +83,19 @@ public class GameController : MonoBehaviour
     }
 
 
+    #region Shop Methods
+
+    public bool CanBuy(float price)
+    {
+        return price <= _cardShopManager.CurrentBalance ? true : false;
+    }
+
+    public void DeductBalance(float price)
+    {
+        _cardShopManager.CurrentBalance-= price;
+    }
+    #endregion
+
     #region Card Management
 
 
@@ -98,12 +111,15 @@ public class GameController : MonoBehaviour
         {
             case "Floor":
                 _mapBuilder.SetTileObject(_allCardItems[0], true);
-                //  AddCurrentItem(_allCardItems[0].GetComponent<ICardItem>());
                 break;
             case "Arcade Machine":
                 _mapBuilder.SetTileObject(_allCardItems[1], false);
-                // AddCurrentItem(_allCardItems[0].GetComponent<ICardItem>());
-
+                break;
+            case "Vending Machine":
+                _mapBuilder.SetTileObject(_allCardItems[2], false);
+                break;
+            case "Ticket Machine":
+                _mapBuilder.SetTileObject(_allCardItems[3], false);
                 break;
         }
     }

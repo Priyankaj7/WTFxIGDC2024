@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VendingMachine : MonoBehaviour ,ICardItem
+public class TicketMachine : MonoBehaviour,ICardItem
 {
     [SerializeField] float _repairCost;
     [SerializeField] float _boostRate;
@@ -49,6 +49,7 @@ public class VendingMachine : MonoBehaviour ,ICardItem
             }
         }
     }
+   
 
     // Update is called once per frame
     void Update()
@@ -62,7 +63,6 @@ public class VendingMachine : MonoBehaviour ,ICardItem
         if (_repairTimer <= 0)
         {
             needsRepair = true;
-            this.GetComponentInChildren<ParticleSystem>().Stop();
             _repairTimer = default(float);
         }
 
@@ -72,7 +72,7 @@ public class VendingMachine : MonoBehaviour ,ICardItem
             Collider[] colliders = Physics.OverlapBox(this.transform.localPosition, new Vector3(2.5f, 2.5f, 2.5f), Quaternion.identity, mask);
             foreach (Collider collider in colliders)
             {
-                if (collider.GetComponent<VendingMachine>() && collider.gameObject != this.gameObject)
+                if (collider.gameObject.name== "cash-register" && collider.gameObject != this.gameObject)
                 {
                     this.isBoosted = true;
                     _earnRate -= _boostRate;
@@ -81,5 +81,6 @@ public class VendingMachine : MonoBehaviour ,ICardItem
                 }
             }
         }
+
     }
 }

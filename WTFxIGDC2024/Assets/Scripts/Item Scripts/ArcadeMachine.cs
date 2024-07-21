@@ -12,7 +12,7 @@ public class ArcadeMachine : MonoBehaviour, ICardItem
     private bool isBoosted;
     bool needsRepair;
 
-
+    float localTimer;
 
     public float GetEarnRate()
     {
@@ -35,6 +35,10 @@ public class ArcadeMachine : MonoBehaviour, ICardItem
     {
         return needsRepair;
     }
+    private void Start()
+    {
+        localTimer = _repairTimer;
+    }
 
     // Update is called once per frame
     void Update()
@@ -42,14 +46,15 @@ public class ArcadeMachine : MonoBehaviour, ICardItem
 
         if (!needsRepair)
         {
-            _repairTimer -= Time.deltaTime;
+            localTimer -= Time.deltaTime;
         }
 
 
-        if (_repairTimer <= 0)
+        if (localTimer <= 0)
         {
             needsRepair = true;
-            _repairTimer = default(float);
+            this.GetComponentInChildren<ParticleSystem>().Stop();
+            localTimer = _repairTimer;
         }
 
         if (!needsRepair && !this.isBoosted)
@@ -76,7 +81,15 @@ public class ArcadeMachine : MonoBehaviour, ICardItem
 
     public void RepairMachine()
     {
-        needsRepair = false;
+        if (needsRepair && GameController.instance.CanBuy(_repairCost))
+        {
+            needsRepair = false;
+            GameController.instance.DeductBalance(_repairCost);
+            if (this.isBoosted)
+            {
+                this.GetComponentInChildren<ParticleSystem>().Play();
+            }
+        }
     }
 
     public void BoostItem()

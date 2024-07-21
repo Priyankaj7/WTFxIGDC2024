@@ -15,7 +15,7 @@ MonoBehaviour:
   AllItems:
   - Name: Floor
     Description: Used to unlock more area
-    Cost: 5
+    Cost: 10
     Icon: {fileID: 21300000, guid: 2ce5432235803a547aef13e631bd246f, type: 3}
   - Name: Arcade Machine
     Description: Generates Revenue Overtime

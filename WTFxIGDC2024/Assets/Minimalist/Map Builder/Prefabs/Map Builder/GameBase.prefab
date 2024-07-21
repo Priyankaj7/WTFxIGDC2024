@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1152294534656254046}
   - component: {fileID: 8197560517326461780}
   - component: {fileID: 5021770765283404959}
+  - component: {fileID: 451397751957670244}
   m_Layer: 0
   m_Name: GameBase
   m_TagString: BaseTile
@@ -113,3 +114,19 @@ MonoBehaviour:
   material: {fileID: 0}
   color: {r: 1, g: 1, b: 1, a: 1}
   scale: {x: 2, y: 2, z: 2}
+--- !u!114 &451397751957670244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3934150578139307440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9770f64ed7dbd3947a78ad094670c27f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _repairCost: 0
+  _boostRate: 0
+  _repairTimer: 0
+  _earnRate: 0

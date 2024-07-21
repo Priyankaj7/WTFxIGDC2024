@@ -623,7 +623,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8100513139530911221, guid: e688c12390d6a6241820eb89c6bd98b6, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8100513139530911221, guid: e688c12390d6a6241820eb89c6bd98b6, type: 3}
       propertyPath: m_LocalScale.x
@@ -1313,7 +1313,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8100513139530911221, guid: e688c12390d6a6241820eb89c6bd98b6, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8100513139530911221, guid: e688c12390d6a6241820eb89c6bd98b6, type: 3}
       propertyPath: m_LocalScale.x
@@ -1580,7 +1580,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8100513139530911221, guid: e688c12390d6a6241820eb89c6bd98b6, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 8100513139530911221, guid: e688c12390d6a6241820eb89c6bd98b6, type: 3}
       propertyPath: m_LocalScale.x
@@ -1674,19 +1674,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1537903272793656133, guid: 5dc252182848d0f489c0fae476591f46, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 6e-44
+      value: 3.4e-44
       objectReference: {fileID: 0}
     - target: {fileID: 1537903272793656133, guid: 5dc252182848d0f489c0fae476591f46, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: 7.26e-43
       objectReference: {fileID: 0}
     - target: {fileID: 1537903272793656133, guid: 5dc252182848d0f489c0fae476591f46, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 1e-44
+      value: 2.5531406
       objectReference: {fileID: 0}
     - target: {fileID: 1537903272793656133, guid: 5dc252182848d0f489c0fae476591f46, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 1.5065e-41
+      value: 7.26e-43
       objectReference: {fileID: 0}
     - target: {fileID: 1713955434925921045, guid: 5dc252182848d0f489c0fae476591f46, type: 3}
       propertyPath: playOnAwake
@@ -2284,7 +2284,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8100513139530911221, guid: e688c12390d6a6241820eb89c6bd98b6, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8100513139530911221, guid: e688c12390d6a6241820eb89c6bd98b6, type: 3}
       propertyPath: m_LocalScale.x
@@ -2497,6 +2497,7 @@ GameObject:
   - component: {fileID: 1195626388}
   - component: {fileID: 1195626387}
   - component: {fileID: 1195626385}
+  - component: {fileID: 1195626390}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2603,6 +2604,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 30, y: 45, z: 0}
+--- !u!114 &1195626390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195626384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49b4cc203aa6414fae5c798d1d0e7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 128
+  m_MaxRayIntersections: 0
 --- !u!1001 &1269881654
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3118,7 +3135,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8100513139530911221, guid: e688c12390d6a6241820eb89c6bd98b6, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 8100513139530911221, guid: e688c12390d6a6241820eb89c6bd98b6, type: 3}
       propertyPath: m_LocalScale.x
@@ -3272,7 +3289,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8100513139530911221, guid: e688c12390d6a6241820eb89c6bd98b6, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8100513139530911221, guid: e688c12390d6a6241820eb89c6bd98b6, type: 3}
       propertyPath: m_LocalScale.x
@@ -3653,6 +3670,7 @@ MonoBehaviour:
   - {fileID: 5021770765283404959, guid: f3cee18e13e854a52b8f66a1618c9594, type: 3}
   - {fileID: -1126388526451241002, guid: 1c34cc9e200b5e94aabf1ba262ee5f45, type: 3}
   - {fileID: -3305112206442902554, guid: 9679aba737b31ac4dae3923dfbe3b277, type: 3}
+  - {fileID: 8191739098676095068, guid: 55a1db4c3cc19cb4e9ba92a2427711c6, type: 3}
   _cardItemData: {fileID: 11400000, guid: 608689373b45aad4e8517c245e696ed9, type: 2}
   _currentItems: []
 --- !u!1001 &1750510718

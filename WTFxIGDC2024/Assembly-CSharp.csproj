@@ -108,6 +108,8 @@
     <Compile Include="Assets\Minimalist\Map Builder\Scripts\Map Builder\MapBuilderRuntime.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\Scripts\Item Scripts\VendingMachine.cs" />
+    <Compile Include="Assets\Scripts\Item Scripts\TicketMachine.cs" />
+    <Compile Include="Assets\Scripts\Item Scripts\Floor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
