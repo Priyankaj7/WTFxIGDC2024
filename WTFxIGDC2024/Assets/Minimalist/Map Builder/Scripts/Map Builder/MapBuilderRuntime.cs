@@ -514,6 +514,7 @@ namespace Minimalist.MapBuilder
                 //Priynakaj - Turned off the bool for avoiding multiple deploy from single card
                 _placedOnce = true;
                 GameController.instance.AddCurrentItem(v.gameObject);
+                AudioManager.instance.PlayDeploySFX();
                 
             }
 

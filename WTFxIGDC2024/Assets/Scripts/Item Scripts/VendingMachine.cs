@@ -10,6 +10,7 @@ public class VendingMachine : MonoBehaviour ,ICardItem
     [SerializeField] float _earnRate;
     private bool isBoosted;
     bool needsRepair;
+    float localTimer;
     public void BoostItem()
     {
         isBoosted = true;
@@ -42,6 +43,9 @@ public class VendingMachine : MonoBehaviour ,ICardItem
         if (needsRepair && GameController.instance.CanBuy(_repairCost))
         {
             needsRepair = false;
+            this.transform.GetChild(2).GetChild(0).GetComponent<Animator>().SetBool("Damaged", false);
+            AudioManager.instance.PlayRepairSFX();
+
             GameController.instance.DeductBalance(_repairCost);
             if (this.isBoosted)
             {
@@ -49,22 +53,30 @@ public class VendingMachine : MonoBehaviour ,ICardItem
             }
         }
     }
+    private void Start()
+    {
+        localTimer = _repairTimer;
+    }
 
     // Update is called once per frame
     void Update()
     {
         if (!needsRepair)
         {
-            _repairTimer -= Time.deltaTime;
+            localTimer -= Time.deltaTime;
         }
 
 
-        if (_repairTimer <= 0)
+        if (localTimer <= 0)
         {
             needsRepair = true;
             this.GetComponentInChildren<ParticleSystem>().Stop();
-            _repairTimer = default(float);
+            this.transform.GetChild(2).GetChild(0).GetComponent<Animator>().SetBool("Damaged", true);
+            localTimer = _repairTimer;
+            AudioManager.instance.PlayDamagedSFX();
+
         }
+
 
         if (!needsRepair && !this.isBoosted)
         {
@@ -76,7 +88,7 @@ public class VendingMachine : MonoBehaviour ,ICardItem
                 {
                     this.isBoosted = true;
                     _earnRate -= _boostRate;
-                    this.GetComponentInChildren<ParticleSystem>().Play();
+                   // this.GetComponentInChildren<ParticleSystem>().Play();
                     GameController.instance.UpdateCurrentItem(this.gameObject);
                 }
             }

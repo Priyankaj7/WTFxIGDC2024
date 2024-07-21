@@ -111,6 +111,7 @@
     <Compile Include="Assets\Scripts\Item Scripts\TicketMachine.cs" />
     <Compile Include="Assets\Scripts\Item Scripts\Floor.cs" />
     <Compile Include="Assets\Scripts\CustomerAI.cs" />
+    <Compile Include="Assets\Scripts\General Managers\AudioManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

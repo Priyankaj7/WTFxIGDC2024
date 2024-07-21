@@ -54,6 +54,9 @@ public class ArcadeMachine : MonoBehaviour, ICardItem
         {
             needsRepair = true;
             this.GetComponentInChildren<ParticleSystem>().Stop();
+            this.transform.GetChild(2).GetChild(0).GetComponent<Animator>().SetBool("Damaged", true);
+            AudioManager.instance.PlayDamagedSFX();
+
             localTimer = _repairTimer;
         }
 
@@ -84,7 +87,9 @@ public class ArcadeMachine : MonoBehaviour, ICardItem
         if (needsRepair && GameController.instance.CanBuy(_repairCost))
         {
             needsRepair = false;
+            this.transform.GetChild(2).GetChild(0).GetComponent<Animator>().SetBool("Damaged", false);
             GameController.instance.DeductBalance(_repairCost);
+            AudioManager.instance.PlayRepairSFX();
             if (this.isBoosted)
             {
                 this.GetComponentInChildren<ParticleSystem>().Play();

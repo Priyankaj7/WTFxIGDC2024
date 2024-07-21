@@ -212,6 +212,8 @@ GameObject:
   - component: {fileID: 8580433751355584371}
   - component: {fileID: 8191739098676095068}
   - component: {fileID: 6725230794016301160}
+  - component: {fileID: 7818415970699418668}
+  - component: {fileID: 9059552374165890798}
   m_Layer: 7
   m_Name: ticket-machine
   m_TagString: Untagged
@@ -330,8 +332,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _repairCost: 50
   _boostRate: 10
-  _repairTimer: 200
+  _repairTimer: 100
   _earnRate: 20
+--- !u!114 &7818415970699418668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8744847444828551383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6725230794016301160}
+          m_TargetAssemblyTypeName: TicketMachine, Assembly-CSharp
+          m_MethodName: RepairMachine
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!208 &9059552374165890798
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8744847444828551383}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.2, y: 0.36200002, z: 0.19800001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.36200002, z: 0.035}
+  m_TimeToStationary: 0.5
 --- !u!1001 &1569955505896328861
 PrefabInstance:
   m_ObjectHideFlags: 0

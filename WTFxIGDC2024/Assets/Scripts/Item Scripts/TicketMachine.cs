@@ -10,6 +10,7 @@ public class TicketMachine : MonoBehaviour,ICardItem
     [SerializeField] float _earnRate;
     private bool isBoosted;
     bool needsRepair;
+    float localTimer;
     public void BoostItem()
     {
         isBoosted = true;
@@ -43,28 +44,39 @@ public class TicketMachine : MonoBehaviour,ICardItem
         {
             needsRepair = false;
             GameController.instance.DeductBalance(_repairCost);
+            this.transform.GetChild(2).GetChild(0).GetComponent<Animator>().SetBool("Damaged", false);
+            AudioManager.instance.PlayRepairSFX();
+
             if (this.isBoosted)
             {
                 this.GetComponentInChildren<ParticleSystem>().Play();
             }
         }
     }
-   
+    private void Start()
+    {
+        localTimer = _repairTimer;
+    }
 
     // Update is called once per frame
     void Update()
     {
         if (!needsRepair)
         {
-            _repairTimer -= Time.deltaTime;
+            localTimer -= Time.deltaTime;
         }
 
 
-        if (_repairTimer <= 0)
+        if (localTimer <= 0)
         {
             needsRepair = true;
-            _repairTimer = default(float);
+            this.GetComponentInChildren<ParticleSystem>().Stop();
+            this.transform.GetChild(2).GetChild(0).GetComponent<Animator>().SetBool("Damaged", true);
+            localTimer = _repairTimer;
+            AudioManager.instance.PlayDamagedSFX();
+
         }
+
 
         if (!needsRepair && !this.isBoosted)
         {

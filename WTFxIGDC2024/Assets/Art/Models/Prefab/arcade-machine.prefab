@@ -233,7 +233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _repairCost: 100
   _boostRate: 20
-  _repairTimer: 60
+  _repairTimer: 20
   _earnRate: 30
 --- !u!114 &-1126388526451241002
 MonoBehaviour:
@@ -564,6 +564,10 @@ PrefabInstance:
     - target: {fileID: 3213916058930775711, guid: 509a6f83c181c9e4f8e90316091ee8ab, type: 3}
       propertyPath: m_Name
       value: Broken_Emote
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213916058930775711, guid: 509a6f83c181c9e4f8e90316091ee8ab, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 509a6f83c181c9e4f8e90316091ee8ab, type: 3}
