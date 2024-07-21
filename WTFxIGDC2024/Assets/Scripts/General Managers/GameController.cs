@@ -92,7 +92,7 @@ public class GameController : MonoBehaviour
 
     public void DeductBalance(float price)
     {
-        _cardShopManager.CurrentBalance-= price;
+        _cardShopManager.CurrentBalance -= price;
     }
     #endregion
 
@@ -101,8 +101,24 @@ public class GameController : MonoBehaviour
 
     public ItemData GetRandomItemData()
     {
-        int rand = Random.RandomRange(0, _cardItemData.AllItems.Length);
-        return _cardItemData.AllItems[rand];
+        ItemData itemData = new ItemData();
+        int totalChance = 0;
+        for (int i = 0; i < _cardItemData.AllItems.Length; i++)
+        {
+            totalChance += _cardItemData.AllItems[i].Chance;
+        }
+        int cummalativeChance = 0;
+        int rand = Random.Range(0, totalChance + 1);
+        foreach (ItemData item in _cardItemData.AllItems)
+        {
+            cummalativeChance += item.Chance;
+            if (rand <= cummalativeChance)
+            {
+                itemData = item;
+                break;
+            }
+        }
+        return itemData;
     }
 
     public void SetCurrentCard(string itemName)

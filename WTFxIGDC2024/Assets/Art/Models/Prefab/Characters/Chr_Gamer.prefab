@@ -980,6 +980,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9010593327199397368}
   - component: {fileID: 8828945988207685105}
+  - component: {fileID: 1731700028}
+  - component: {fileID: 7788592374726086146}
   m_Layer: 0
   m_Name: Chr_Gamer
   m_TagString: Untagged
@@ -1024,6 +1026,40 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!195 &1731700028
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8523025222948486978}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.26
+  m_Speed: 1
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.01
+  m_BaseOffset: 0
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &7788592374726086146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8523025222948486978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9a0f06acd964e643991e5a8f8fc197f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8690141757324492885
 GameObject:
   m_ObjectHideFlags: 0

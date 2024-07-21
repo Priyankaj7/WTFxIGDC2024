@@ -12,8 +12,12 @@ public class CardItemData : ScriptableObject
 [Serializable]
 public class ItemData
 {
-   public string Name;
+    public string Name;
     public string Description;
     public float Cost;
+    public int Chance;
+    [Space]
+    [Space]
+
     public Sprite Icon;
 }
