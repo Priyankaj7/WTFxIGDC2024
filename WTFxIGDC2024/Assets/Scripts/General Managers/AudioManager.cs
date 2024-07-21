@@ -26,6 +26,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip _deploySFX;
     [SerializeField] private AudioClip _damagedSFX;
 
+
+    public bool MusicStatus = true;
+    public bool SFXStatus = true;
+
     private void Start()
     {
         _bgSource.clip = _bgMusic;
@@ -33,18 +37,36 @@ public class AudioManager : MonoBehaviour
         _bgSource.Play();
     }
 
+    public void TurnMusic()
+    {
+        if (MusicStatus)
+        {
+            _bgSource.clip = _bgMusic;
+            _bgSource.playOnAwake = true;
+            _bgSource.Play();
+        }
+        else
+        {
+
+            _bgSource.Stop();
+        }
+    }
+
     public void PlayRepairSFX()
     {
-        AudioSource.PlayClipAtPoint(_repairSFX, Camera.main.transform.position);
+        if (SFXStatus)
+            AudioSource.PlayClipAtPoint(_repairSFX, Camera.main.transform.position);
     }
     public void PlayDeploySFX()
     {
-        AudioSource.PlayClipAtPoint(_deploySFX, Camera.main.transform.position);
+        if (SFXStatus)
+            AudioSource.PlayClipAtPoint(_deploySFX, Camera.main.transform.position);
 
     }
     public void PlayDamagedSFX()
     {
-        AudioSource.PlayClipAtPoint(_damagedSFX, Camera.main.transform.position);
+        if (SFXStatus)
+            AudioSource.PlayClipAtPoint(_damagedSFX, Camera.main.transform.position);
 
     }
 }

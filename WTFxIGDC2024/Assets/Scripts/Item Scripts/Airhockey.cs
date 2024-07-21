@@ -1,9 +1,9 @@
+using Minimalist.MapBuilder;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class ArcadeMachine : MonoBehaviour, ICardItem
+public class Airhockey : MonoBehaviour,ICardItem
 {
     [SerializeField] float _repairCost;
     [SerializeField] float _boostRate;
@@ -64,24 +64,14 @@ public class ArcadeMachine : MonoBehaviour, ICardItem
         {
             int mask = LayerMask.GetMask("Item");
             Collider[] colliders = Physics.OverlapBox(this.transform.localPosition, new Vector3(2.5f, 2.5f, 2.5f), Quaternion.identity, mask);
-            if (colliders.Length > 2)
+            foreach (Collider collider in colliders)
             {
-                int nearbyArcade = 0;
-                foreach (Collider collider in colliders)
+                if (collider.GetComponent<EditModeInstanceBhv>() && collider.gameObject != this.gameObject)
                 {
-                    if (collider.GetComponent<ArcadeMachine>() && collider.gameObject != this.gameObject)
-                    {
-                        nearbyArcade++;
-                    }
-                    if (nearbyArcade > 2)
-                    {
-                        this.isBoosted = true;
-                        _earnRate += _boostRate;
-                        this.GetComponentInChildren<ParticleSystem>().Play();
-                        GameController.instance.UpdateCurrentItem(this.gameObject);
-
-                    }
-                  
+                    this.isBoosted = true;
+                    _earnRate -= _boostRate;
+                   // this.GetComponentInChildren<ParticleSystem>().Play();
+                    GameController.instance.UpdateCurrentItem(this.gameObject);
                 }
             }
         }
@@ -101,6 +91,10 @@ public class ArcadeMachine : MonoBehaviour, ICardItem
             GameController.instance.DeductBalance(_repairCost);
             AudioManager.instance.PlayRepairSFX();
             if (this.isBoosted)
+            {
+                this.GetComponentInChildren<ParticleSystem>().Stop();
+            }
+            else
             {
                 this.GetComponentInChildren<ParticleSystem>().Play();
             }

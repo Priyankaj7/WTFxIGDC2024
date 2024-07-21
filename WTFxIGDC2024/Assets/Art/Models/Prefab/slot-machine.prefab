@@ -127,8 +127,12 @@ GameObject:
   - component: {fileID: 9039906954825778744}
   - component: {fileID: 6525931584303510258}
   - component: {fileID: 3563960749143909987}
-  m_Layer: 0
-  m_Name: gambling-machine
+  - component: {fileID: 169423830696939936}
+  - component: {fileID: 5994110345155521498}
+  - component: {fileID: -5238896142676389701}
+  - component: {fileID: 4933501146906492440}
+  m_Layer: 7
+  m_Name: slot-machine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -215,6 +219,82 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5245, y: 0.7758819, z: 0.48749998}
   m_Center: {x: -0.037249997, y: 0.38794094, z: 0}
+--- !u!114 &169423830696939936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4724337869530207015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d287d14b4e0da434b87b8af5e59eb33f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 0}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  scale: {x: 2, y: 2, z: 2}
+--- !u!208 &5994110345155521498
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4724337869530207015}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.26200002, y: 0.388, z: 0.24400002}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.037, y: 0.388, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!114 &-5238896142676389701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4724337869530207015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 616d284e754e55744b33c82596a12dee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _repairCost: 100
+  _boostRate: 20
+  _repairTimer: 30
+  _earnRate: 40
+--- !u!114 &4933501146906492440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4724337869530207015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: -5238896142676389701}
+          m_TargetAssemblyTypeName: SlotMachine, Assembly-CSharp
+          m_MethodName: RepairMachine
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &3069460479547177725
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -366,7 +446,8 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3455498449517880852, guid: e62e775cb5c996a4c944ff20f3cec481, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e62e775cb5c996a4c944ff20f3cec481, type: 3}
 --- !u!4 &56669774654192623 stripped
 Transform:

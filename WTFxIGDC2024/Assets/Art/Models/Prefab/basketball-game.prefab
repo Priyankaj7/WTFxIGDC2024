@@ -95,7 +95,11 @@ GameObject:
   - component: {fileID: 5503580035974878326}
   - component: {fileID: 7747409256229773500}
   - component: {fileID: 3135355712801641037}
-  m_Layer: 0
+  - component: {fileID: 271260845247044366}
+  - component: {fileID: 4978639985124221942}
+  - component: {fileID: 5593732332846302024}
+  - component: {fileID: 795669402082908886}
+  m_Layer: 7
   m_Name: basketball-game
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,6 +121,7 @@ Transform:
   - {fileID: 1234486922708193956}
   - {fileID: 2780096795654100722}
   - {fileID: 8350672573211441954}
+  - {fileID: 6299519246172351178}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -183,6 +188,82 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.65, y: 0.79999995, z: 1.0125}
   m_Center: {x: 0, y: 0.39999998, z: 0.006250024}
+--- !u!114 &271260845247044366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8107798588358754665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d287d14b4e0da434b87b8af5e59eb33f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 0}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  scale: {x: 1, y: 1, z: 1}
+--- !u!114 &4978639985124221942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8107798588358754665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2526f46432964234094cf51745058e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _repairCost: 150
+  _boostRate: 30
+  _repairTimer: 40
+  _earnRate: 60
+--- !u!114 &5593732332846302024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8107798588358754665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4978639985124221942}
+          m_TargetAssemblyTypeName: BasketBallMachine, Assembly-CSharp
+          m_MethodName: RepairMachine
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!208 &795669402082908886
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8107798588358754665}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.32500002, y: 0.4, z: 0.50600004}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.4, z: 0.006}
+  m_TimeToStationary: 0.5
 --- !u!1 &8545590094011411430
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,10 +534,73 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3455498449517880852, guid: e62e775cb5c996a4c944ff20f3cec481, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e62e775cb5c996a4c944ff20f3cec481, type: 3}
 --- !u!4 &2780096795654100722 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3049428253405200658, guid: e62e775cb5c996a4c944ff20f3cec481, type: 3}
   m_PrefabInstance: {fileID: 920244612162639840}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8932464076851309654
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8921489537721031635}
+    m_Modifications:
+    - target: {fileID: 3213916058930775708, guid: 509a6f83c181c9e4f8e90316091ee8ab, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213916058930775708, guid: 509a6f83c181c9e4f8e90316091ee8ab, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213916058930775708, guid: 509a6f83c181c9e4f8e90316091ee8ab, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.148
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213916058930775708, guid: 509a6f83c181c9e4f8e90316091ee8ab, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213916058930775708, guid: 509a6f83c181c9e4f8e90316091ee8ab, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213916058930775708, guid: 509a6f83c181c9e4f8e90316091ee8ab, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213916058930775708, guid: 509a6f83c181c9e4f8e90316091ee8ab, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213916058930775708, guid: 509a6f83c181c9e4f8e90316091ee8ab, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213916058930775708, guid: 509a6f83c181c9e4f8e90316091ee8ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213916058930775708, guid: 509a6f83c181c9e4f8e90316091ee8ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213916058930775708, guid: 509a6f83c181c9e4f8e90316091ee8ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213916058930775711, guid: 509a6f83c181c9e4f8e90316091ee8ab, type: 3}
+      propertyPath: m_Name
+      value: Broken_Emote
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 509a6f83c181c9e4f8e90316091ee8ab, type: 3}
+--- !u!4 &6299519246172351178 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3213916058930775708, guid: 509a6f83c181c9e4f8e90316091ee8ab, type: 3}
+  m_PrefabInstance: {fileID: 8932464076851309654}
   m_PrefabAsset: {fileID: 0}

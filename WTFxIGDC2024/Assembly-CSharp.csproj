@@ -112,6 +112,12 @@
     <Compile Include="Assets\Scripts\Item Scripts\Floor.cs" />
     <Compile Include="Assets\Scripts\CustomerAI.cs" />
     <Compile Include="Assets\Scripts\General Managers\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\Item Scripts\SlotMachine.cs" />
+    <Compile Include="Assets\Scripts\Item Scripts\DartBoard.cs" />
+    <Compile Include="Assets\Scripts\Item Scripts\BasketBallMachine.cs" />
+    <Compile Include="Assets\Scripts\Item Scripts\DanceFloor.cs" />
+    <Compile Include="Assets\Scripts\Item Scripts\Airhockey.cs" />
+    <Compile Include="Assets\Scripts\MainMenuController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

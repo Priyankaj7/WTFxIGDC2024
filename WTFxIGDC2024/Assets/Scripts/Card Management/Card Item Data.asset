@@ -16,20 +16,47 @@ MonoBehaviour:
   - Name: Floor
     Description: Used to unlock more area
     Cost: 10
-    Chance: 30
+    Chance: 50
     Icon: {fileID: 21300000, guid: 2ce5432235803a547aef13e631bd246f, type: 3}
   - Name: Arcade Machine
-    Description: Generates Revenue Overtime
+    Description: 'Generates Money overtime. Bonus: If 4 placed next to another Arcade
+      Machine'
     Cost: 200
     Chance: 20
     Icon: {fileID: 21300000, guid: b7cc8f92d2cbb3e4095f0934d8202aed, type: 3}
   - Name: Vending Machine
-    Description: Generates Revenue Overtime
+    Description: Generates less money if placed near another Vending machine
     Cost: 100
     Chance: 10
     Icon: {fileID: 21300000, guid: 1219c96b2f8513b4487cb576105f6a8c, type: 3}
   - Name: Ticket Machine
-    Description: Generates Revenue Overtime
+    Description: Generates more money if placed near reception
     Cost: 120
-    Chance: 5
+    Chance: 0
     Icon: {fileID: 21300000, guid: 9963547ee0712434a9f12329c82442a1, type: 3}
+  - Name: Slot Machine
+    Description: Generates more money if placed in a group of 2
+    Cost: 250
+    Chance: 0
+    Icon: {fileID: 21300000, guid: 14dea228e2979dd4b9d663adc9069adc, type: 3}
+  - Name: Dart Board
+    Description: Never requires a repair cost
+    Cost: 80
+    Chance: 0
+    Icon: {fileID: 21300000, guid: 42a34e7356c4dce4798ac794444dfc8e, type: 3}
+  - Name: Basketball Machine
+    Description: Generates Bonus revenuw if clubbed together with another same unit.
+      Max stack 2.
+    Cost: 220
+    Chance: 0
+    Icon: {fileID: 21300000, guid: 9963547ee0712434a9f12329c82442a1, type: 3}
+  - Name: Air Hockey
+    Description: High revenue Machine . Generates less if more than 2 unity near.
+    Cost: 400
+    Chance: 0
+    Icon: {fileID: 21300000, guid: be84b732a20db254d92ab8aaf2293143, type: 3}
+  - Name: Dance Floor
+    Description: Highest Revenue unit. Causes near by unit to generate less
+    Cost: 1000
+    Chance: 0
+    Icon: {fileID: 21300000, guid: b7cc8f92d2cbb3e4095f0934d8202aed, type: 3}

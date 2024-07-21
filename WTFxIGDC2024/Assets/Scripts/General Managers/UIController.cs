@@ -10,6 +10,7 @@ public class UIController : MonoBehaviour
     [SerializeField]TMP_Text _earnRateText;
     [SerializeField]TMP_Text _levelText;
     [SerializeField] GameObject _winPanel;
+    [SerializeField] GameObject _gameOverPanel;
     [SerializeField] Button _settingsButton;
     [SerializeField] GameObject _settingsPanel;
     [SerializeField] Sprite[] _settinButtonImage;
@@ -26,6 +27,10 @@ public class UIController : MonoBehaviour
     public void LevelComplete()
     {
         _winPanel.SetActive(true);
+    }
+    public void GameOver()
+    {
+        _gameOverPanel.SetActive(true);
     }
     public void SetLevelText(string s)
     {
@@ -44,5 +49,15 @@ public class UIController : MonoBehaviour
             _settingsPanel.gameObject.SetActive(true);
             _settingsButton.transform.GetChild(0).GetComponent<Image>().sprite = _settinButtonImage[1];
         }
+    }
+
+    public void ToggleMusic()
+    {
+        AudioManager.instance.MusicStatus = !AudioManager.instance.MusicStatus;
+        AudioManager.instance.TurnMusic();
+    }
+    public void ToggleSFX()
+    {
+        AudioManager.instance.SFXStatus = !AudioManager.instance.SFXStatus;
     }
 }

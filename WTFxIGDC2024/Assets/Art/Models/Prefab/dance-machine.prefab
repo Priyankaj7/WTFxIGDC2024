@@ -95,7 +95,11 @@ GameObject:
   - component: {fileID: 1896764809705664141}
   - component: {fileID: 4446845871185156679}
   - component: {fileID: 619223779793009320}
-  m_Layer: 0
+  - component: {fileID: 1839679342093951985}
+  - component: {fileID: 8025616331512817302}
+  - component: {fileID: 772026335327209708}
+  - component: {fileID: 5820378218468493374}
+  m_Layer: 7
   m_Name: dance-machine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,6 +188,82 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.7232051, y: 0.95, z: 1}
   m_Center: {x: 0, y: 0.475, z: 0.012500003}
+--- !u!208 &1839679342093951985
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2789595906138766226}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.36200002, y: 0.47500002, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.47500002, z: 0.013}
+  m_TimeToStationary: 0.5
+--- !u!114 &8025616331512817302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2789595906138766226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d287d14b4e0da434b87b8af5e59eb33f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 0}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  scale: {x: 2, y: 2, z: 2}
+--- !u!114 &772026335327209708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2789595906138766226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66d9f198fc0fc4048a328af1f2c729e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _repairCost: 400
+  _boostRate: 50
+  _repairTimer: 20
+  _earnRate: 100
+--- !u!114 &5820378218468493374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2789595906138766226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 772026335327209708}
+          m_TargetAssemblyTypeName: DanceFloor, Assembly-CSharp
+          m_MethodName: RepairMachine
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &4582669949973674762
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,7 +596,8 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3455498449517880852, guid: e62e775cb5c996a4c944ff20f3cec481, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e62e775cb5c996a4c944ff20f3cec481, type: 3}
 --- !u!4 &6787513496380517802 stripped
 Transform:
